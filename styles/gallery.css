@@ -23,7 +23,7 @@ section.gallery {
         grid-template-areas: 
         "A B B"
         "C C D";
-
+        
         gap: 2.5rem;
     }
 
@@ -31,10 +31,24 @@ section.gallery {
         position: relative;
         border-radius: 2.5rem;
         overflow: hidden;
+        line-height: 0;
+
+        animation: image-appear linear backwards; /* Trazer a informação do antes ( backwards) */
+        animation-timeline:  view();
+        animation-range: 100px 300px;
+
+        &[data-delay] {
+            animation-range: 150px 350px;
+        }
+
+        & figcaption {
+            width: 2rem;
+        }
 
         & > img {
             height: 25rem;
             object-fit: cover;
+            transition: scale 500ms;
         }
 
         &:hover {
@@ -65,6 +79,12 @@ section.gallery {
     & figcaption {
         display: flex;
         align-items: center;
+    }
+}
 
+@keyframes image-appear {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
     }
 }
